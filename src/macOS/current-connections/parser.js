@@ -6,6 +6,7 @@ const BSSIDRegex = /[ ]*BSSID: ([0-9A-Fa-f:]*)/;
 const SSIDRegex = /[ ]*SSID: (.*)/;
 const securityRegex = /[ ]*link auth: (.*)/;
 const channelRegex = /[ ]*channel: (.*)/;
+const lastTxRate = /[ ]*lastTxRate: (.*)/;
 
 const formatMacAddress = mac =>
   mac
@@ -39,6 +40,12 @@ const parse = stdout => {
       return;
     }
 
+     const matchlastTxRate= line.match(lastTxRate);
+    if (matchlastTxRate) {
+      connection.linkspeed = matchlastTxRate[1];
+      return;
+    }
+    
     const matchSecurity = line.match(securityRegex);
     if (matchSecurity) {
       connection.security = matchSecurity[1];
