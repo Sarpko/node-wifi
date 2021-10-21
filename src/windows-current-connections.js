@@ -39,6 +39,7 @@ function parseShowInterfaces(stdout) {
       mac: tmpConnection['bssid'],
       mode: tmpConnection['mode'],
       channel: parseInt(tmpConnection['channel']),
+      linkspeed: parseInt(tmpConnection['transmission']),
       frequency: parseInt(
         networkUtils.frequencyFromChannel(parseInt(tmpConnection['channel']))
       ),
