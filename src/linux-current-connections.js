@@ -7,7 +7,7 @@ function getCurrentConnection(config, callback) {
   args.push('--terse');
   args.push('--fields');
   args.push(
-    'active,ssid,bssid,mode,chan,freq,signal,security,wpa-flags,rsn-flags,device'
+    'active,ssid,bssid,mode,chan,freq,signal,security,wpa-flags,rsn-flags,device,rate'
   );
   args.push('device');
   args.push('wifi');
@@ -47,7 +47,8 @@ function getCurrentConnection(config, callback) {
             security_flags: {
               wpa: fields[8].replace(/&&/g, ':'),
               rsn: fields[9].replace(/&&/g, ':')
-            }
+            },
+            rate:parseInt(fields[11].replace(/&&/g, ':'))
           });
         }
       }
